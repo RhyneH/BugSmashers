@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Input
+from myapi.models import Input
 
 class InputForm(ModelForm):
     class Meta:
