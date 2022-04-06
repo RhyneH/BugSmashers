@@ -18,3 +18,28 @@ function getCookie(name) {
     return cookieValue;
 }
 const csrftoken = getCookie('csrftoken');
+
+let InputForm = document.querySelector('#input-form')
+
+InputForm.addEventListener('submit', function (event){
+    event.preventDefault()
+    console.log(event.target)
+    formData = new FormData(InputForm)
+    fetch(inputURL, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers:{
+            'Accept': 'application/json',
+            'X-Request-With': 'XMLHttpRequest',
+            'X-CSRFToken': csrftoken,
+        },
+        body: formData
+    })
+    .then(response => {
+        return response.json()
+    })
+    .then(data => {
+        console.log(data)
+    })
+})
+
