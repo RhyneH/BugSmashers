@@ -4,5 +4,5 @@ from myapi.models import Input
 class InputForm(ModelForm):
     class Meta:
         model = Input
-        fields = ['insulin', 'carbs', 'food_intake']
+        fields = ['insulin_in_units', 'carbs_in_grams', 'food_intake']
         
