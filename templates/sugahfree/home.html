@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="{% static 'scripts/main.js' %}" defer></script>
+        <title>Sugahfree</title>
+    </head>
+    <body>
+        <h1>sugahfree homepage</h1>
+        <h2>LOGIN / SIGNUP</h2>
+        <input type="text" placeholder="Email">
+        <br>
+        <input type="text" placeholder="Password">
+        <br>
+        <a>Forgot Password</a>
+        <br>
+        <button>Login</button>
+        <div>
+            <h2>Enter Information Below</h2>
+            <form class="ba bw2 b--blue" id='class-form' method="post">
+                <input type="text">
+                <br>
+                <input type="text">
+                <br>
+                <input type="text">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-hot-pink" type="submit">Add Information</button>
+            </form>
+            
+    </body>
+</html>
