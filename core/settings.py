@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'sugahfree',
     'myapi.apps.MyapiConfig',
+    'rest_framework',
     
 ]
 

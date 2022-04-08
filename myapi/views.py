@@ -5,6 +5,6 @@ from .models import Input
 
 
 class InputViewSet(viewsets.ModelViewSet):
-    queryset = Input.objects.all().order_by('name')
+    queryset = Input.objects.all().order_by('-created')
     serializer_class = InputSerializer
 # Create your views here.
