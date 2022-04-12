@@ -2,27 +2,20 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="{% static 'scripts/main.js' %}" defer></script>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <title>Sugahfree</title>
     </head>
     <body>
-        <h1>sugahfree homepage</h1>
-        <h2>LOGIN / SIGNUP</h2>
-        <input type="text" placeholder="Email">
-        <br>
-        <input type="text" placeholder="Password">
-        <br>
-        <a>Forgot Password</a>
-        <br>
-        <button>Login</button>
+        <h1>Sugahfree</h1>
+        <h3 style="color:rgb(72, 200, 246);">(a diabetes tracker)</h3>
+        
         <div>
-            <h2>Enter Information Below</h2>
-            <form class="ba bw2 b--blue" id='class-form' method="post">
-                <input type="text">
-                <br>
-                <input type="text">
-                <br>
-                <input type="text">
+            <h3>Enter Info Below</h3>
+            <form class="ba bw2 b--blue" data-user= {{ user.id }} id='input-form' method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-hot-pink" type="submit">Add Information</button>
