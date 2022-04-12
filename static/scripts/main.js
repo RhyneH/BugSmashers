@@ -20,11 +20,16 @@ function getCookie(name) {
 const csrftoken = getCookie('csrftoken');
 
 let InputForm = document.querySelector('#input-form')
+console.log(InputForm)
+let user_id = InputForm.dataset.user
+const inputURL = 'api/inputs/'
 
 InputForm.addEventListener('submit', function (event){
     event.preventDefault()
     console.log(event.target)
+
     formData = new FormData(InputForm)
+    formData.append('user', user_id)
     fetch(inputURL, {
         method: 'POST',
         credentials: 'same-origin',
