@@ -14,7 +14,7 @@
         <h3 style="color:rgb(72, 200, 246);">(a diabetes tracker)</h3>
         
         <div>
-            <h3>Enter Info Below</h3>
+            <h3>Add New Entry</h3>
             <form class="ba bw2 b--blue" data-user= {{ user.id }} id='input-form' method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
