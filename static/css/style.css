@@ -1,4 +1,11 @@
 body {
     background-color: yellow;
 }
- 
+
+h1 {
+    color: rgb(72, 200, 246);
+    font-size: xx-large;
+    font-family: Georgia;
+    font-weight: bold;
+    font-style: normal;
+}
