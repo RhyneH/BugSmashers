@@ -11,8 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from os import environ
-
-
+import django_on_heroku
 import environ
 import os
 
@@ -144,3 +143,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'sugahfree.User' 
 
 ACCOUNT_ACTIVATION_DAYS =7
+
+django_on_heroku.settings(locals())
+del DATABASES['default']['OPTIONS']['sslmode']
