@@ -4,7 +4,7 @@ from rest_framework import routers
 from .import views
 
 router = routers.DefaultRouter()
-router.register(r'inputs', views.InputViewSet)
+router.register(r'inputs', views.InputViewSet, basename='inputs')
 
 
 
