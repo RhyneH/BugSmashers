@@ -1,16 +1,8 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="{% static 'scripts/main.js' %}" defer></script>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <title>Sugahfree</title>
-    </head>
 
-    <body>
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
         <h1>SUGAHFREE</h1>
         <p style="color:black;">"As a diabetic, I want to be able to keep track of my insulin & carbs intake so that I can live a longer healthier life."</p>
         
@@ -24,5 +16,4 @@
             </div>
             <h2>ENTRY RECORDS</h2>
             <div id='results'></div>
-    </body>
-</html>
+{% endblock %}
