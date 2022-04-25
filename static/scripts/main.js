@@ -48,6 +48,7 @@ InputForm.addEventListener('submit', function (event){
 
     formData = new FormData(InputForm)
     formData.append('user', user_id)
+
     fetch(inputURL, {
         method: 'POST',
         credentials: 'same-origin',
@@ -66,6 +67,27 @@ InputForm.addEventListener('submit', function (event){
         window.location.reload();
     })
 })
+
+function updateInput(element) {
+    const inputId = element.parentElement.id
+    const inputText = document.querySelector('.edit-text')
+    fetch(`http://localhost:3000/inputs/${inputId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        item: inputText.value,
+        updated_at: moment().format(),
+      }),
+    })
+      .then(function (res) {
+        return res.json()
+      })
+      .then(function (data) {
+        console.log(data)
+        // update the item in the DOM
+        renderInputText(element.parentElement, data)
+      })
+  }
 
 let inputs = []
 
