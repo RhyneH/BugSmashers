@@ -130,4 +130,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'sugahfree.User' 
 
+LOGIN_REDIRECRT_URL = '/'
+
 ACCOUNT_ACTIVATION_DAYS =7
