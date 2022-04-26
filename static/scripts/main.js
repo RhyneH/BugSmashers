@@ -48,6 +48,7 @@ InputForm.addEventListener('submit', function (event){
 
     formData = new FormData(InputForm)
     formData.append('user', user_id)
+
     fetch(inputURL, {
         method: 'POST',
         credentials: 'same-origin',
@@ -63,8 +64,30 @@ InputForm.addEventListener('submit', function (event){
     })
     .then(data => {
         console.log(data)
+        window.location.reload();
     })
 })
+
+function updateInput(element) {
+    const inputId = element.parentElement.id
+    const inputText = document.querySelector('.edit-text')
+    fetch(`http://localhost:3000/inputs/${inputId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        item: inputText.value,
+        updated_at: moment().format(),
+      }),
+    })
+      .then(function (res) {
+        return res.json()
+      })
+      .then(function (data) {
+        console.log(data)
+        // update the item in the DOM
+        renderInputText(element.parentElement, data)
+      })
+  }
 
 let inputs = []
 
@@ -84,3 +107,17 @@ function buildResults (resultsArray){
     }
   
   }
+
+const paragraph = document.getElementById("edit");
+const edit_button = document.getElementById("edit-button");
+const end_button = document.getElementById("end-editing");
+
+edit_button.addEventListener("click", function() {
+  paragraph.contentEditable = true;
+  paragraph.style.backgroundColor = "#dddbdb";
+} );
+
+end_button.addEventListener("click", function() {
+  paragraph.contentEditable = false;
+  paragraph.style.backgroundColor = "#ffe44d";
+} )

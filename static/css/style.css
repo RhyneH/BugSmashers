@@ -1,12 +1,13 @@
 body {
     background-color: rgb(250, 250, 222);
 }
- 
+
+
 h1 {
     text-align: center;
     font-family:-apple-system;
     font-size: 50px;
-
+    
 }
 
 p {
@@ -30,3 +31,32 @@ h2 {
 button {
     font-style: italic;
 }
+  
+  #container {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+  }
+  
+  #edit {
+    padding: 5px;
+    outline: none;
+  }
+  
+  button {
+    width: 80px;
+    padding: 5px;
+    margin: 0 3px;
+    background-color: #a8d1f1;
+    outline: none;
+    border: 1px solid #ffffff;
+    box-shadow: 2px 2px 2px #3f3f3f;
+  }
+  
+  button:hover {
+    box-shadow: 2px 2px 3px ;
+  }
+  
+  button:active {
+    box-shadow: 1px 1px 3px ;
+  }
