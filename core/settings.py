@@ -144,5 +144,8 @@ AUTH_USER_MODEL = 'sugahfree.User'
 
 ACCOUNT_ACTIVATION_DAYS =7
 
+LOGIN_REDIRECRT_URL = '/'
+
 django_on_heroku.settings(locals())
 del DATABASES['default']['OPTIONS']['sslmode']
+
