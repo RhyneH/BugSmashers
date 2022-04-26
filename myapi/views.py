@@ -6,6 +6,8 @@ from .models import Input
 
 class InputViewSet(viewsets.ModelViewSet):
     serializer_class = InputSerializer
+
+
 # Create your views here.
 
     def get_queryset(self):
