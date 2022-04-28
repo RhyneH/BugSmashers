@@ -68,16 +68,20 @@ InputForm.addEventListener('submit', function (event){
     })
 })
 
-function updateInput(element) {
-    const inputId = element.parentElement.id
-    const inputText = document.querySelector('.edit-text')
-    fetch(`http://localhost:3000/inputs/${inputId}`, {
+function updateInput(inputId) {
+  formData = new FormData(InputForm)
+
+    fetch(`api/inputs/${inputId}`, {
       method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        item: inputText.value,
-        updated_at: moment().format(),
-      }),
+      headers: {
+         'Content-Type': 'application/json', 
+         'Accept': 'application/json',
+      'X-Request-With': 'XMLHttpRequest',
+      'X-CSRFToken': csrftoken, 
+      },
+      body: formData, 
+        
+      
     })
       .then(function (res) {
         return res.json()
@@ -101,23 +105,48 @@ function buildResults (resultsArray){
       let food = document.createElement('p')
       food.innerText= `this is food intake ${input.food_intake}`
       newDiv.appendChild(food)
+      newDiv.classList.add('inputline')
       newDiv.innerText = `INSULIN: ${input.insulin_in_units} CARBS: ${input.carbs_in_grams} FOOD: ${input.food_intake}`
+    let checkbox = document.createElement('input')
+    checkbox.type = 'checkbox'
+    checkbox.id = input.id
+    newDiv.appendChild(checkbox)
+    newDiv.setAttribute('data-insulin', input.insulin_in_units)
     console.log(input.insulin_in_units, input.carbs_in_grams, input.food_intake)
       resultsDiv.appendChild(newDiv)
     }
   
   }
 
-const paragraph = document.getElementById("edit");
 const edit_button = document.getElementById("edit-button");
 const end_button = document.getElementById("end-editing");
+const units = document.getElementById('in_insulin_in_units');
+const carbs = document.getElementById('id_carbs_in_grams');
+const food = document.getElementById('id_food_intake');
 
-edit_button.addEventListener("click", function() {
-  paragraph.contentEditable = true;
-  paragraph.style.backgroundColor = "#dddbdb";
-} );
+const cb = document.querySelector('#accept');
+console.log(cb.checked);
 
-end_button.addEventListener("click", function() {
-  paragraph.contentEditable = false;
-  paragraph.style.backgroundColor = "#ffe44d";
-} )
+
+edit_button.addEventListener('click', function (event){
+  const inputlines = document.querySelectorAll('.inputline');
+  console.log(inputlines)
+  console.log(event.target)
+  let id 
+  for (let line of inputlines){
+    console.log(line.lastElementChild)
+    if (line.lastElementChild.checked){
+      console.log(line.id)
+      id = line.lastElementChild.id
+       let insulinField = document.getElementById('id_insulin_in_units')
+       let insulin = line.dataset.insulin
+       insulinField.value = insulin
+       console.log(insulin)
+     
+      }
+    }
+    
+    updateInput(id)
+  })
+    
+
