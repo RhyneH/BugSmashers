@@ -98,6 +98,8 @@ let inputs = []
 let resultsDiv = document.querySelector('#results')
 console.log(resultsDiv)
 
+
+  
 function buildResults (resultsArray){
     console.log(resultsArray)
     for (let input of resultsArray){
@@ -107,6 +109,9 @@ function buildResults (resultsArray){
       newDiv.appendChild(food)
       newDiv.classList.add('inputline')
       newDiv.innerText = `INSULIN: ${input.insulin_in_units} CARBS: ${input.carbs_in_grams} FOOD: ${input.food_intake}`
+    let suggested = document.createElement('div')
+    suggested.innerText = `you should take ${input.calculate_insulin_units} units of insulin `
+    newDiv.appendChild(suggested)
     let checkbox = document.createElement('input')
     checkbox.type = 'checkbox'
     checkbox.id = input.id
@@ -114,39 +119,40 @@ function buildResults (resultsArray){
     newDiv.setAttribute('data-insulin', input.insulin_in_units)
     console.log(input.insulin_in_units, input.carbs_in_grams, input.food_intake)
       resultsDiv.appendChild(newDiv)
+  
+    
+    
     }
   
   }
 
-const edit_button = document.getElementById("edit-button");
-const end_button = document.getElementById("end-editing");
+// const edit_button = document.getElementById("edit-button");
+// const end_button = document.getElementById("end-editing");
 const units = document.getElementById('in_insulin_in_units');
 const carbs = document.getElementById('id_carbs_in_grams');
 const food = document.getElementById('id_food_intake');
 
-const cb = document.querySelector('#accept');
-console.log(cb.checked);
 
 
-edit_button.addEventListener('click', function (event){
-  const inputlines = document.querySelectorAll('.inputline');
-  console.log(inputlines)
-  console.log(event.target)
-  let id 
-  for (let line of inputlines){
-    console.log(line.lastElementChild)
-    if (line.lastElementChild.checked){
-      console.log(line.id)
-      id = line.lastElementChild.id
-       let insulinField = document.getElementById('id_insulin_in_units')
-       let insulin = line.dataset.insulin
-       insulinField.value = insulin
-       console.log(insulin)
+  // edit_button.addEventListener('click', function (event){
+  // const inputlines = document.querySelectorAll('.inputline');
+  // console.log(inputlines)
+  // console.log(event.target)
+  // let id 
+  // for (let line of inputlines){
+  //   console.log(line.lastElementChild)
+  //   if (line.lastElementChild.checked){
+  //     console.log(line.id)
+  //     id = line.lastElementChild.id
+  //      let insulinField = document.getElementById('id_insulin_in_units')
+  //      let insulin = line.dataset.insulin
+  //      insulinField.value = insulin
+  //      console.log(insulin)
      
-      }
-    }
+  //     }
+  //   }
     
-    updateInput(id)
-  })
+  //   updateInput(id)
+  // })
     
 
