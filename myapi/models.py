@@ -8,6 +8,9 @@ class Input(models.Model):
     food_intake = models.TextField(blank=False)
     user = models.ForeignKey(User, related_name= 'inputs', on_delete= models.CASCADE)
     created = models.DateTimeField(auto_now_add= True)
+    taken = models.BooleanField(default = False)
+
+
 
     @property
     def calculate_insulin_units(self):
@@ -18,7 +21,6 @@ class Input(models.Model):
            
 
 
-    def __str__(self):
-        return self.insulin_in_units  
+
 
 

@@ -7,7 +7,7 @@ from .models import Input
 class InputSerializer(serializers.ModelSerializer):
     class Meta:
         model = Input
-        fields = ( 'id', 'blood_sugar', 'carbs_in_grams', 'food_intake', 'user', 'created', 'calculate_insulin_units' )
+        fields = ( 'id', 'blood_sugar', 'carbs_in_grams', 'food_intake', 'user', 'created', 'calculate_insulin_units', 'taken', )
 
         
 

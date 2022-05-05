@@ -69,9 +69,9 @@ InputForm.addEventListener('submit', function (event){
 })
 
 function updateInput(inputId) {
-  formData = new FormData(InputForm)
+console.log('updateinput', inputId)
 
-    fetch(`api/inputs/${inputId}`, {
+    fetch(`api/inputs/${inputId}/`, {
       method: 'PATCH',
       headers: {
          'Content-Type': 'application/json', 
@@ -79,7 +79,9 @@ function updateInput(inputId) {
       'X-Request-With': 'XMLHttpRequest',
       'X-CSRFToken': csrftoken, 
       },
-      body: formData, 
+      body: JSON.stringify({
+        taken: true,
+      }),
         
       
     })
@@ -89,7 +91,6 @@ function updateInput(inputId) {
       .then(function (data) {
         console.log(data)
         // update the item in the DOM
-        renderInputText(element.parentElement, data)
       })
   }
 
@@ -97,7 +98,6 @@ let inputs = []
 
 let resultsDiv = document.querySelector('#results')
 console.log(resultsDiv)
-
 
   
 function buildResults (resultsArray){
@@ -115,6 +115,10 @@ function buildResults (resultsArray){
     let checkbox = document.createElement('input')
     checkbox.type = 'checkbox'
     checkbox.id = input.id
+    if (input.taken){
+      checkbox.checked = true
+    }
+    checkbox.addEventListener('change', event => {updateInput(event.target.id)})
     newDiv.appendChild(checkbox)
     newDiv.setAttribute('data-insulin', input.insulin_in_units)
     console.log(input.insulin_in_units, input.carbs_in_grams, input.food_intake)
@@ -126,33 +130,10 @@ function buildResults (resultsArray){
   
   }
 
-// const edit_button = document.getElementById("edit-button");
-// const end_button = document.getElementById("end-editing");
 const units = document.getElementById('in_insulin_in_units');
 const carbs = document.getElementById('id_carbs_in_grams');
 const food = document.getElementById('id_food_intake');
 
 
 
-  // edit_button.addEventListener('click', function (event){
-  // const inputlines = document.querySelectorAll('.inputline');
-  // console.log(inputlines)
-  // console.log(event.target)
-  // let id 
-  // for (let line of inputlines){
-  //   console.log(line.lastElementChild)
-  //   if (line.lastElementChild.checked){
-  //     console.log(line.id)
-  //     id = line.lastElementChild.id
-  //      let insulinField = document.getElementById('id_insulin_in_units')
-  //      let insulin = line.dataset.insulin
-  //      insulinField.value = insulin
-  //      console.log(insulin)
-     
-  //     }
-  //   }
-    
-  //   updateInput(id)
-  // })
-    
 
